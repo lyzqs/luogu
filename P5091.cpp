@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define il inline
+#define ll long long
+#define Max 1000005
+using namespace std;
+ll m,n,p,a,b,fl=0;
+il ll read()
+{
+	char c=getchar();
+	ll x=0,f=1;
+	while(c>'9'||c<'0')
+	{
+		if(c=='-') f=-1;
+		c=getchar();
+	}
+	while(c>='0'&&c<='9')
+	{
+		x=x*10+c-'0';
+		if(x>=p) fl=1;
+		x%=p;
+		c=getchar();
+	}
+	return x*f;
+}
+il ll qpw(ll a,ll b)
+{
+	ll res=1;
+	while(b)
+	{
+		if(b&1) res=res*a%m;
+		a=a*a%m;
+		b>>=1;
+	}
+	return res;
+}
+int main()
+{
+	cin>>a>>m;
+	n=p=m;
+	for(ll i=2;i*i<=m;i++)
+	{
+		if(n%i==0)
+		{
+			p=p-p/i;
+			while(n%i==0)
+				n/=i;
+		}
+	}
+	if(n>1) p=p-p/n;
+	b=read();
+//	cout<<a<<' '<<b<<' '<<m<<endl;
+	if(fl) b+=p;
+	cout<<qpw(a,b)<<endl;
+}

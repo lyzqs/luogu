@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+#define il inline
+#define ll long long
+#define Mod 9982442353
+using namespace std;
+il ll qpw(ll a,ll b)
+{
+	ll res=1;
+	while(b)
+	{
+		if(b&1) res=res*a%Mod;
+		a=a*a%Mod;
+		b>>=1;
+	}
+	return res;
+}
+int main()
+{
+	int t;
+	ll n,m;
+	cin>>t;
+	while(t--)
+	{
+		scanf("%lld%lld",&n,&m);
+		printf("%lld\n",(qpw(2,n)+qpw(2,m))%Mod);
+	}
+}
